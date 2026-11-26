@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>ECSF 2.0 - Demo</title>
+<meta name="description" content="Updated ECSF profiles, tasks, skill areas, knowledge areas and proficiency levels." />
+<link rel="stylesheet" href="assets/styles.css?v=ka7" />
+</head>
+<body>
+
+<div class="topbar">
+  <div class="brand">
+    <div class="brand-mark">E</div>
+    <div>
+      <strong>ECSF 2.0</strong>
+    </div>
+  </div>
+  <nav>
+    <button class="nav-btn" data-view="home">Home</button>
+    <button class="nav-btn" data-view="features">Key Features</button>
+    <button class="nav-btn" data-view="roles">ECSF Profiles</button>
+    <button class="nav-btn" data-view="skills">Skill Areas</button>
+    <button class="nav-btn" data-view="kas">Knowledge Areas</button>
+    <button class="nav-btn" data-view="matrix">Profiles × Skill Areas</button>
+    <button class="nav-btn" data-view="kamatrix">Profiles × Knowledge Areas</button>
+  </nav>
+</div>
+
+<main>
+
+  <!-- ================= HOME ================= -->
+  <section id="view-home" class="view active">
+    <div class="home-simple">
+      <img src="assets/images/ecsf-logo.svg" alt="European Cybersecurity Skills Framework (ECSF)" class="home-logo" />
+
+      <p class="home-text">
+        This is a demonstration of how ECSF 2.0 will look like.
+      </p>
+      <p class="home-text">
+        The 12 ECSF profiles have been revised and updated. This demo presents the revised tasks and their associated skill areas. By clicking on each skill area, users can see how the corresponding skill is expected to evolve across different proficiency levels.
+      </p>
+      <p class="home-text">
+        For each skill area mapped to an ECSF profile, a target proficiency level is also assigned. This represents the level expected of a fully proficient practitioner of that profile. For example, the CISO profile is assigned Governance &amp; Strategy at Level 4. This does not imply that every CISO must start at Level 4; a more junior CISO may naturally begin at Level 1 or 2 and progressively develop towards the target Level 4.
+      </p>
+      <p class="home-text">
+        Each profile also lists the knowledge areas it needs, with a target level for each. Clicking a knowledge area shows its definition, how it progresses and indicative knowledge items.
+      </p>
+
+      <button class="primary home-cta" data-nav="roles">Explore the ECSF profiles</button>
+    </div>
+  </section>
+
+  <!-- ================= PROFILES LIST ================= -->
+  <section id="view-roles" class="view">
+    <div class="section-head">
+      <div>
+        <h2>ECSF Profiles</h2>
+        <p class="muted">Select a profile to view its tasks, skill areas, target levels and knowledge areas.</p>
+        <p class="search-note" id="role-search-note"></p>
+      </div>
+      <div class="search-wrap">
+        <input type="text" id="role-search" placeholder="Search profiles and tasks…" />
+      </div>
+    </div>
+    <div class="role-grid" id="role-grid"></div>
+  </section>
+
+  <!-- ================= ROLE DETAIL ================= -->
+  <section id="view-role-detail" class="view">
+    <button class="back" data-nav="roles">&larr; Back to ECSF profiles</button>
+    <div class="detail-hero">
+      <p class="eyebrow" id="role-detail-eyebrow">ECSF profile</p>
+      <div style="display:flex;align-items:center;gap:14px;">
+        <img id="role-detail-icon" src="" alt="" width="44" height="44" style="display:none;" />
+        <h2 id="role-detail-title"></h2>
+      </div>
+      <p id="role-detail-summary" class="profile-mission"></p>
+      <details class="profile-more" id="role-detail-more">
+        <summary><span class="more-closed">Show more</span><span class="more-open">Show less</span></summary>
+        <div class="profile-facts">
+          <div class="profile-fact">
+            <h4>Summary statement</h4>
+            <p id="role-detail-statement"></p>
+          </div>
+          <div class="profile-fact" id="role-detail-alt-wrap">
+            <h4>Alternative titles</h4>
+            <div class="alt-titles" id="role-detail-alt"></div>
+          </div>
+        </div>
+      </details>
+    </div>
+    <div class="detail-grid">
+      <div class="panel">
+        <h3>Tasks</h3>
+        <ul class="task-list" id="role-detail-tasks"></ul>
+      </div>
+      <div class="side-col">
+        <div class="panel">
+          <h3>Skill areas</h3>
+          <div class="skill-map" id="role-detail-skills"></div>
+        </div>
+        <div class="panel" id="role-detail-ka-panel">
+          <h3>Knowledge areas</h3>
+          <div class="skill-map" id="role-detail-kas"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= SKILLS LIST ================= -->
+  <section id="view-skills" class="view">
+    <div class="section-head">
+      <div>
+        <h2>Skill areas</h2>
+        <p class="muted">Select a skill area to see its four proficiency levels and the profiles that use it.</p>
+      </div>
+      <div class="search-wrap">
+        <input type="text" id="skill-search" placeholder="Search skill areas and levels…" />
+      </div>
+    </div>
+    <div class="skill-grid" id="skill-grid"></div>
+  </section>
+
+  <!-- ================= SKILL DETAIL ================= -->
+  <section id="view-skill-detail" class="view">
+    <button class="back" data-nav="skills">&larr; Back to skill areas</button>
+    <div class="detail-hero">
+      <p class="eyebrow" id="skill-detail-eyebrow">Skill area</p>
+      <h2 id="skill-detail-title"></h2>
+      <p class="muted" id="skill-detail-desc" style="margin-top:10px;font-size:15px;"></p>
+    </div>
+    <p class="trans-note" id="skill-detail-trans" style="display:none"></p>
+    <div class="panel">
+      <h3>Level progression</h3>
+      <div class="progression" id="skill-detail-levels"></div>
+    </div>
+    <div class="skill-roles">
+      <h3>ECSF Profiles that use this skill</h3>
+      <div id="skill-detail-roles"></div>
+    </div>
+  </section>
+
+  <!-- ================= KNOWLEDGE AREAS LIST ================= -->
+  <section id="view-kas" class="view">
+    <div class="section-head">
+      <div>
+        <h2>Knowledge areas</h2>
+        <p class="muted">Select a knowledge area to see its three knowledge levels and the profiles that need it.</p>
+      </div>
+      <div class="search-wrap">
+        <input type="text" id="ka-search" placeholder="Search knowledge areas and levels…" />
+      </div>
+    </div>
+    <div class="skill-grid" id="ka-list"></div>
+  </section>
+
+  <!-- ================= KNOWLEDGE AREA DETAIL ================= -->
+  <section id="view-ka-detail" class="view">
+    <button class="back" id="ka-back" data-nav="kas">&larr; Back to knowledge areas</button>
+    <div class="detail-hero">
+      <p class="eyebrow" id="ka-detail-eyebrow">Knowledge area</p>
+      <h2 id="ka-detail-title"></h2>
+      <p class="muted" id="ka-detail-desc" style="margin-top:10px;font-size:15px;"></p>
+    </div>
+    <p class="trans-note" id="ka-detail-baseline" style="display:none"></p>
+    <p class="ka-note" id="ka-detail-note" style="display:none"></p>
+    <div class="panel">
+      <h3>Level progression</h3>
+      <div class="progression" id="ka-detail-levels"></div>
+    </div>
+    <div class="skill-roles">
+      <h3>ECSF Profiles that need this knowledge area</h3>
+      <div id="ka-detail-roles"></div>
+    </div>
+  </section>
+
+  <!-- ================= PROFILES AND SKILL AREAS ================= -->
+  <section id="view-matrix" class="view">
+    <div class="section-head">
+      <div>
+        <h2>Profiles × Skill Areas</h2>
+        <p class="muted">This matrix shows the skill areas mapped to each ECSF profile and the target level for each. Click a profile or skill area to open it.</p>
+      </div>
+    </div>
+    <div class="matrix-legend">
+      <span>Proficiency level</span>
+      <span class="level l1">L1</span>
+      <span class="level l2">L2</span>
+      <span class="level l3">L3</span>
+      <span class="level l4">L4</span>
+      <span class="matrix-legend-note">Blank = not applicable</span>
+      <span class="matrix-legend-note"><span class="trans-tag">transversal</span> = levels set directly, not derived from tasks</span>
+    </div>
+    <div class="matrix-wrap" id="matrix-wrap"></div>
+  </section>
+
+  <!-- ================= PROFILES AND KNOWLEDGE AREAS ================= -->
+  <section id="view-kamatrix" class="view">
+    <div class="section-head">
+      <div>
+        <h2>Profiles × Knowledge Areas</h2>
+        <p class="muted">This matrix shows the knowledge areas each ECSF profile needs and the target level for each. Click a profile or knowledge area to open it.</p>
+      </div>
+    </div>
+    <div class="matrix-legend">
+      <span>Knowledge level</span>
+      <span class="level l1">L1</span><span>Basic</span>
+      <span class="level l2">L2</span><span>Applied</span>
+      <span class="level l3">L3</span><span>Advanced</span>
+      <span class="matrix-legend-note">Blank = not applicable</span>
+      <span class="matrix-legend-note"><span class="trans-tag">transversal</span> = every profile needs it at least at L1</span>
+    </div>
+    <div class="matrix-wrap" id="kamatrix-wrap"></div>
+  </section>
+
+  <!-- ================= KEY FEATURES ================= -->
+  <section id="view-features" class="view">
+    <div class="section-head">
+      <div>
+        <h2>Key Features</h2>
+        <p class="muted">The key features behind ECSF 2.0: How skill and knowledge levels progress, what target levels mean, and how tasks and skill areas are mapped to profiles.</p>
+      </div>
+    </div>
+    <ol class="feature-list">
+      <li class="feature">
+        <span class="feature-num">01</span>
+        <div>
+          <h3>Skill area progression levels</h3>
+          <p>In every skill area, levels progress by scope, autonomy and influence, not by different types of activity. Each skill area is described at four proficiency levels:</p>
+          <div class="feature-levels">
+            <div class="feature-level"><span class="level l1">L1</span><p>Executes defined, narrow-scope tasks under supervision or against an established procedure, contributing to work rather than owning outcomes.</p></div>
+            <div class="feature-level"><span class="level l2">L2</span><p>Works independently on a single, well-defined piece of work from start to finish.</p></div>
+            <div class="feature-level"><span class="level l3">L3</span><p>Owns a domain or process end to end, across multiple cases, setting the approach and handling complexity and ambiguity without direction.</p></div>
+            <div class="feature-level"><span class="level l4">L4</span><p>Sets the direction, strategy, methodology or standards that others work within. It can be reached through a management path (senior managers, heads of function) or an expert path (recognised technical authorities).</p></div>
+          </div>
+        </div>
+      </li>
+      <li class="feature">
+        <span class="feature-num">02</span>
+        <div>
+          <h3>Knowledge area progression levels</h3>
+          <p>Each knowledge area is described at three levels, from understanding the area, to using it in practice, to being able to judge, shape and improve it:</p>
+          <div class="feature-levels" id="feature-ka-levels"></div>
+          <ul class="feature-points">
+            <li><strong>Knowledge levels are cumulative.</strong> To move to a higher level, the learner must already master the knowledge of the level below. Progressing to the next level then means two things: first, deepening the knowledge items already learned, so that they are used more independently, in more complex situations and with more judgement; and second, learning new knowledge items that only become relevant at that level, where the area requires it. The knowledge items listed for a level are therefore what that level adds; the items of the lower levels remain part of it, at the depth and breadth the level describes.</li>
+            <li><strong>Knowledge level progression takes two forms (often combined).</strong> In depth, the same knowledge items are mastered more thoroughly. In breadth, they are extended to a wider scope, such as more platforms, technologies, environments, frameworks, jurisdictions or sectors. For example, a junior Cyber Incident Responder may need the security features of one operating system (such as Windows) at Applied level, while an advanced Incident Responder needs them across several operating systems.</li>
+            <li><strong>Each knowledge item is listed once,</strong> at the level where it is introduced; the level descriptions explain how knowledge items from lower levels are deepened or broadened. On each knowledge area page, each level description is followed by its indicative knowledge items as bullet points. Knowledge areas are numbered K01 to <span data-ka-last>K33</span>.</li>
+          </ul>
+        </div>
+      </li>
+      <li class="feature">
+        <span class="feature-num">03</span>
+        <div>
+          <h3>How levels progress</h3>
+          <p>Level descriptions are proficiency statements, not lists of profile tasks. Where they give examples, the examples illustrate the level and are not exhaustive.</p>
+        </div>
+      </li>
+      <li class="feature">
+        <span class="feature-num">04</span>
+        <div>
+          <h3>Profile levels are target levels</h3>
+          <p>The level shown for a profile in a skill area is the target level for a fully proficient practitioner of that profile. It isn't an entry requirement, and it isn't a maximum. A low level in a skill area outside the profile's core (for example L1) means the profile needs foundational proficiency in that area; it doesn't mean the practitioner is junior.</p>
+          <p style="margin-top:10px">The same applies to knowledge areas: the level shown for each knowledge area is the target level, the level of knowledge sufficient for a fully proficient professional to perform all the tasks of the profile independently and to the expected standard.</p>
+        </div>
+      </li>
+      <li class="feature">
+        <span class="feature-num">05</span>
+        <div>
+          <h3>How tasks are written</h3>
+          <ul class="feature-points">
+            <li><strong>Generic wording:</strong> tasks are written so they apply to any type of entity. They avoid references to specific organisational settings and to named legislation, which would date quickly.</li>
+            <li><strong>Granularity:</strong> each task describes a coherent responsibility at the level of a fully proficient practitioner. Overlapping tasks are merged rather than split, to keep the number of tasks manageable.</li>
+          </ul>
+        </div>
+      </li>
+      <li class="feature">
+        <span class="feature-num">06</span>
+        <div>
+          <h3>How a profile's skill areas and levels are derived</h3>
+          <p>A profile includes a skill area only if at least one of its tasks is mapped to that skill area.</p>
+          <ul class="feature-points">
+            <li>Each task is mapped to exactly one skill area, the one that reflects its primary purpose and output. Many tasks draw on several skill areas, but supporting skill areas are not mapped. Where a task combines more than one element, it is mapped according to its main purpose.</li>
+            <li>The profile's level is the level whose description the task wording supports. Where several tasks map to the same skill area, the highest level supported by any of them applies.</li>
+          </ul>
+        </div>
+      </li>
+      <li class="feature">
+        <span class="feature-num">07</span>
+        <div>
+          <h3>Transversal skill areas</h3>
+          <p>S22 AI Literacy &amp; Secure AI Use is a transversal skill area. Its profile levels are set directly, based on how each profile uses AI in its work.</p>
+          <p style="margin-top:10px">Some knowledge areas are also transversal <span class="trans-tag">transversal</span>: every profile needs them at least at level 1 (Basic).</p>
+        </div>
+      </li>
+      <li class="feature">
+        <span class="feature-num">08</span>
+        <div>
+          <h3>Skill area mapping to tasks</h3>
+          <p>A skill area is only mapped to a task where this skill is a real working requirement of the profile, and the level reflects the depth of the skill area the work needs. For example, Legal, Regulatory &amp; Compliance (S03) is only mapped to tasks where having legal skills is a real working requirement. General legal awareness, expected of almost all profiles, is not mapped.</p>
+        </div>
+      </li>
+      <li class="feature">
+        <span class="feature-num">09</span>
+        <div>
+          <h3>No meaning in counts</h3>
+          <p>The number of tasks per profile doesn't indicate the profile's size or importance.</p>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+</main>
+
+<footer>
+  <div><strong>ECSF 2.0</strong><span id="footer-meta"></span></div>
+  <div>European Cybersecurity Skills Framework</div>
+</footer>
+
+<script src="assets/data.js?v=ka7"></script>
+<script src="assets/ka-data.js?v=ka7"></script>
+<script src="assets/app.js?v=ka7"></script>
+</body>
+</html>
